@@ -12,9 +12,15 @@ import Vue from 'vue'
 import Vuetify from 'vuetify'
 
 Vue.use(Vuetify)
+import VueSimplemde from 'vue-simplemde'
+
+Vue.use(VueSimplemde)
 
 import User from './Helpers/User'
+import md from 'marked'
 window.User = User
+window.md = md
+window.EventBus = new Vue()
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

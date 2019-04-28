@@ -1,8 +1,14 @@
 <template>
 <v-container>
-  <form class="elevation-2" @submit.prevent="login">
-    <h1>Log In</h1>
+  <form class="elevation-2"@submit.prevent="signup">
+    <h1>Sign Up</h1>
     <div>
+    <v-text-field
+      v-model="form.name"
+      label="Name"
+      spellcheck="false"
+      required
+    ></v-text-field>
     <v-text-field
       v-model="form.email"
       label="E-mail"
@@ -17,9 +23,16 @@
       required
       type="password"
     ></v-text-field>
+    <v-text-field
+      v-model="form.password_confirmation"
+      label="Confirm Password"
+      :rules="passRules"
+      required
+      type="password"
+    ></v-text-field>
 
-    <v-btn color="#3490dc" type="submit" round>Log In</v-btn>
-    <router-link to="/signup"><v-btn outline color="#3490dc" round>Sign Up</v-btn></router-link>
+    <v-btn color="#3490dc" type="submit" round>Sign Up</v-btn>
+    <router-link to="/login"><v-btn outline color="#3490dc" round>Log In</v-btn></router-link>
     <v-btn @click="clear" color="error" outline round>clear</v-btn>
     </div>
   </form>
@@ -32,8 +45,10 @@
 
     data: () => ({
       form: {
+        name: null,
         email: null,
-        password: null
+        password: null,
+        password_confirmation: null
       } ,
       emailRules: [
         v => !!v || 'E-mail is required',
@@ -48,17 +63,24 @@
 
     created() {
       if(User.loggedIn()){
-        window.location = '/forum'
+        this.$router.push({name: 'forum'})
       }
     },
 
     methods: {
-      login: function () {
-        User.login(this.form)
+      signup: function() {
+        axios.post('/api/auth/signup',this.form)
+        .then(res =>{ 
+          User.loginValidation(res)
+        } )
+        .catch(err => console.log(err.response.data))
+        
       },
       clear () {
+        this.form.name = null
         this.form.password = null
         this.form.email = null
+        this.form.password_confirmation = null
       }
     }
   }

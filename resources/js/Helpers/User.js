@@ -13,6 +13,7 @@ class User{
         const user = res.data.user
         if(Token.isValid(jwt)){
             AppStorage.store(jwt,user)
+            window.location ='/forum'
         }
     }
     hasToken(){
@@ -27,6 +28,7 @@ class User{
     }
     logOut(){
         AppStorage.clear()
+        window.location = '/forum'
     }
     name(){
         if(this.loggedIn()){

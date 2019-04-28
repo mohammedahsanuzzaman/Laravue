@@ -11,8 +11,8 @@ class Question extends Model
     {
         return 'slug';
     }
-    // protected $fillable = array('title', 'slug', 'body');
-    protected $guarded = [];
+    protected $fillable = ['title', 'slug', 'body','user_id','category_id'];
+    // protected $guarded = [];
 
     public function user()
     {

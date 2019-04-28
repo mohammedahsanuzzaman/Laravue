@@ -4,7 +4,7 @@
             <v-flex xs12 sm8>
                 <questions
                 v-for="question in questions"
-                :key="question.title"
+                :key="question.q_id"
                 :question= question
                 ></questions>
             </v-flex>

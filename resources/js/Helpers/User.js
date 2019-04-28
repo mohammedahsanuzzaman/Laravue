@@ -40,5 +40,8 @@ class User{
             return Token.payload(AppStorage.getToken()).sub
         }
     }
+    ownId(id){
+        return this.id() == id
+    }
 }
 export default User = new User();

@@ -9,6 +9,7 @@ use Illuminate\Http\Response;
 use Tymon\JWTAuth\Exceptions\TokenExpiredException;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Exceptions\TokenBlacklistedException;
+use Whoops\Exception\ErrorException;
 
 class Handler extends ExceptionHandler
 {
@@ -59,6 +60,9 @@ class Handler extends ExceptionHandler
         }
         else if($exception instanceof TokenBlacklistedException){
             return response()->json(['error'=>'Token could not be used, please log in again!'], Response::HTTP_BAD_REQUEST);
+        }
+        else if($exception instanceof ErrorException){
+            return response()->json(['error'=>'Token is invalid'], Response::HTTP_BAD_REQUEST);
         }
         else if($exception instanceof JWTException){
             return response()->json(['error'=>'Token is not found/provided'], Response::HTTP_BAD_REQUEST);

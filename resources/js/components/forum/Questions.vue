@@ -8,19 +8,10 @@
         </v-card-title>
 
         <v-card-actions>
-          <v-btn outline round class="mr-2">Share</v-btn>
-          <router-link :to= "question.path"><v-btn outline color="purple" round>Read</v-btn></router-link>
           <v-spacer></v-spacer>
-          <v-btn icon @click="show = !show">
-            <v-icon>{{ show ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
-          </v-btn>
+          <v-btn outline round class="mr-2" @click="share" v-if="shareV">Share</v-btn>
+          <router-link :to= "question.path"><v-btn outline color="purple" round>Read</v-btn></router-link>
         </v-card-actions>
-
-        <v-slide-y-transition>
-          <v-card-text v-show="show">
-              {{question.body}}
-          </v-card-text>
-        </v-slide-y-transition>
       </v-card>
 </template>
 
@@ -31,7 +22,27 @@ export default {
         show: false,
         }
     },
-    props:['question']
+    props:['question'],
+    methods:{
+      async share() {
+            if(navigator.share){
+                try {
+                    await navigator.share({ title: this.question.title, url: `https://laravue-forum.herokuapp.com/${this.question.path}` });
+                } 
+                catch (err) {
+                    // eslint-disable-next-line
+                    console.error("Share failed:", err.message);
+                }
+            }else{
+                alert('your browser is not supported')
+            }  
+        }
+    },
+    computed:{
+      shareV(){
+        return navigator.share ? true:false
+      }
+    }
 }
 </script>
 

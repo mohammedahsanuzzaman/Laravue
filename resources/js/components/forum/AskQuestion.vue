@@ -1,7 +1,7 @@
 <template>
     <v-container>
         <form  @submit.prevent="create">
-            <h1>ASk QuEsTioN</h1>
+            <h1>Ask Question</h1>
             <div>
             <v-text-field
             v-model="form.title"
@@ -18,14 +18,13 @@
             </v-autocomplete>
 <markdown-editor v-model="form.body"></markdown-editor>
 
-            <v-btn color="#3490dc" type="submit" round>Create</v-btn>
+            <v-btn color="#3490dc" type="submit" round class="d-block mx-auto" >Create</v-btn>
             </div>
         </form>
     </v-container>
 </template>
 
 <script>
-import Axios from 'axios';
 export default {
     data(){
         return{
@@ -39,13 +38,13 @@ export default {
         }
     },
     created(){
-        Axios.get('/api/category')
+        axios.get('/api/category')
             .then(res => this.categories = res.data.data)
             .catch(err => console.log(err.response.data))
     },
     methods:{
         create(){
-            Axios.post('/api/question',this.form)
+            axios.post('/api/question',this.form)
             .then(res => this.$router.push(res.data.path))
             .catch(err => console.log(err.response.data))
         }

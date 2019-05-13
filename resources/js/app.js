@@ -6,19 +6,24 @@
  */
 
 require('./bootstrap');
+import 'font-awesome/css/font-awesome.min.css' 
 
 window.Vue = require('vue');
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 
-Vue.use(Vuetify)
+Vue.use(Vuetify,{
+    iconfont: 'fa4'
+})
 import VueSimplemde from 'vue-simplemde'
 
 Vue.use(VueSimplemde)
 
 import User from './Helpers/User'
+import Exception from './Helpers/Exception'
 import md from 'marked'
 window.User = User
+window.Exception = Exception
 window.md = md
 window.EventBus = new Vue()
 /**

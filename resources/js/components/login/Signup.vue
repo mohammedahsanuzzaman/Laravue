@@ -1,6 +1,6 @@
 <template>
 <v-container>
-  <form class="elevation-2"@submit.prevent="signup">
+  <form class="elevation-2" @submit.prevent="signup">
     <h1>Sign Up</h1>
     <div>
     <v-text-field
@@ -56,7 +56,7 @@
       ],
       passRules: [
         v => !!v || 'Password is required',
-        // v => /^(?=.*[a-z])(?=.*[0-9])(?=.{8,})/.test(v) || 'Please enter a valid Password'
+        v => /^(?=.*[a-z])(?=.*[0-9])(?=.{8,})/.test(v) || 'Please enter a valid Password'
       ]
 
     }),

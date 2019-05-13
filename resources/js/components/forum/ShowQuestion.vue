@@ -7,7 +7,7 @@
           </div>
         </v-card-title>
 
-        <v-card-text v-html="body">
+        <v-card-text v-html="body" class="headline font-weight-bold">
         </v-card-text>
         <v-card-actions v-if="own">
           <!-- <router-link :to= "question.path"><v-btn outline color="purple" round>Read</v-btn></router-link> -->

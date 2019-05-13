@@ -1,31 +1,47 @@
 <template>
-    <v-toolbar>
+    <div>
+      <v-navigation-drawer
+      fixed
+      v-model="drawer"
+      right
+      app>
+      <v-list dense>
+        <v-list-tile v-for="item in items" :key="item.title" :to="item.to" v-if="item.show" @click="drawer = !drawer">
+          <v-list-tile-action>
+            <v-icon>{{item.icon}}</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>{{item.title.toUpperCase()}}</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list>
+    </v-navigation-drawer>
+        <v-toolbar app>
         <router-link to="/"><v-toolbar-title>LaraVue</v-toolbar-title></router-link>
         <v-spacer></v-spacer>
-        <div>
-            <v-toolbar-items class="hidden-sm-and-down">
-                <router-link
-                v-for="item in items"
-                :key="item.title"
-                v-if="item.show"
-                :to="item.to"><v-btn flat>{{item.title}}</v-btn>
-                </router-link>
-            </v-toolbar-items>
-        </div>
+        <reply-notification v-if="loggedIn"></reply-notification>
+        <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
     </v-toolbar>
+    
+    </div>
 </template>
 
 <script>
+import ReplyNotificaton from './ReplyNotification.vue'
 export default {
+    components:{'reply-notification':ReplyNotificaton},
     data(){
         return{
+            drawer : false,
+            loggedIn: User.loggedIn(),
             items: [
-                {title: 'forum', to: '/forum', show: true},
-                {title: 'ask question', to: '/ask-question', show: User.loggedIn()},
-                {title: 'categories', to: '/categories', show: User.loggedIn()},
-                {title: 'login', to: '/login', show: !User.loggedIn()},
-                {title: 'logout', to: '/logout', show: User.loggedIn()},
-                {title: 'signup', to: '/signup', show: !User.loggedIn()}
+                {title: 'home', to: '/', show: true, icon : 'home'},
+                {title: 'forum', to: '/forum', show: true, icon : 'forum'},
+                {title: 'ask question', to: '/ask-question', show: User.loggedIn(), icon : 'help_outline'},
+                {title: 'categories', to: '/categories', show: User.Admin(), icon : 'category'},
+                {title: 'login', to: '/login', show: !User.loggedIn(), icon : 'account_circle'},
+                {title: 'logout', to: '/logout', show: User.loggedIn(), icon : 'power_settings_new'},
+                {title: 'signup', to: '/signup', show: !User.loggedIn(), icon : 'account_box'}
             ]
         }
     },
@@ -43,7 +59,5 @@ a{
     text-decoration: none;
     
 }
-button{
-    padding: 22px 25px;
-}
+
 </style>

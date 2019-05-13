@@ -19,9 +19,8 @@ class User{
     hasToken(){
         const storedToken = AppStorage.getToken()
         if(storedToken){
-            return Token.isValid(storedToken)
+            return Token.isValid(storedToken) ? true : this.User.logOut()
         }
-        return false
     }
     loggedIn(){
         return this.hasToken()
@@ -42,6 +41,9 @@ class User{
     }
     ownId(id){
         return this.id() == id
+    }
+    Admin(){
+        return this.id() == 1
     }
 }
 export default User = new User();

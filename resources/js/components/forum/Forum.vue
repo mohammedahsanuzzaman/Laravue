@@ -9,18 +9,18 @@
                 ></questions>
             </v-flex>
             <v-flex xs12 sm4>
-                <categories></categories>
+                <side-cat></side-cat>
             </v-flex>
         </v-layout>
     </v-container>
 </template>
 
 <script>
-import Axios from 'axios';
 import Questions from './Questions.vue'
-import Categories from './Categories.vue'
+// import Categories from './Categories.vue'
+import SideCat from './SideCat.vue'
 export default {
-    components:{ Questions, Categories},
+    components:{ Questions,SideCat},
     data(){
         return{
             questions: {}
@@ -28,9 +28,9 @@ export default {
     }
     ,
     created(){
-        Axios.get('/api/question')
+        axios.get('/api/question')
         .then(res=> this.questions = res.data.data)
-        .catch(err=> console.log(err))
+        .catch(err=> Exception.handle(err))
     }
 }
 </script>

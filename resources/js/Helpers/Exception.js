@@ -4,10 +4,12 @@ class Exception{
         this.isExpired(err.response.data.error) 
     }
     isExpired(err){
-        if(err == 'Token is Invalid' || 'Token is Expired'){
+        if(err == 'Token is Expired'){
             User.logOut()
         }
-
+        else if(err == 'Token is Invalid'){
+            User.logOut()
+        }
     }
 }
 export default Exception = new Exception();

@@ -57,11 +57,6 @@ export default {
                     this.getQ()
                 })
             })
-
-            Echo.private('App.User.' + User.id())
-            .notification((notification) => {
-                this.replies.unshift(notification.reply)
-        });
         },
         saveReply(){
             EventBus.$on('svEdit',() =>{

@@ -16,6 +16,7 @@ export default {
     },
     methods:{
         reply(){
+            if(this.body != null){
             axios.post(`/api/question/${this.qSlug}/reply`,{body: this.body})
             .then(res=>{
                 this.body = ''
@@ -23,6 +24,10 @@ export default {
                 window.scrollTo(0,0)
             })
             .catch(err => console.log(err.response.data))
+            }
+            else{
+                alert('Type Something first ! -_-')
+            }
         }
     }
 

@@ -40,13 +40,13 @@ export default {
     created(){
         axios.get('/api/category')
             .then(res => this.categories = res.data.data)
-            .catch(err => console.log(err.response.data))
+            .catch(err => Exception.handle(err))
     },
     methods:{
         create(){
             axios.post('/api/question',this.form)
             .then(res => this.$router.push(res.data.path))
-            .catch(err => console.log(err.response.data))
+            .catch(err => Exception.handle(err))
         }
     }
 

@@ -46,7 +46,9 @@
                 this.unread = res.data.unread
                 this.unread_count = res.data.unread.length
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+              Exception.handle(err)
+            })
         },
         readIt(id){
             axios.post('/api/markAsRead',{id:id})

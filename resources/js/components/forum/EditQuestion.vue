@@ -40,7 +40,7 @@ export default {
             console.log('clicked')
             axios.patch(`/api/question/${this.data.slug}`,this.form)
             .then(res=> window.location = `/question/${this.slugify(this.form.title)}`)
-            .catch(err=> console.log(err.response.data))
+            .catch(err=> Exception.handle(err))
         },
         cancel(){
             EventBus.$emit('cancelEdit')

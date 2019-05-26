@@ -6,7 +6,7 @@
       right
       app>
       <v-list dense>
-        <v-list-tile v-for="item in items" :key="item.title" :to="item.to" v-if="item.show" @click="drawer = !drawer">
+        <v-list-tile @click="drawer = false" v-for="item in items" :key="item.title" :to="item.to" v-if="item.show">
           <v-list-tile-action>
             <v-icon>{{item.icon}}</v-icon>
           </v-list-tile-action>

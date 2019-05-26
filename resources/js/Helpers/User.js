@@ -27,7 +27,7 @@ class User{
     }
     logOut(){
         AppStorage.clear()
-        window.location = '/forum'
+        window.location = '/login'
     }
     name(){
         if(this.loggedIn()){

@@ -16,14 +16,6 @@ export default {
             count: this.data.like_count
         }
     },
-    created(){
-        Echo.channel('LikeChannel')
-            .listen('LikeEvent', (e) => {
-                if(this.data.id == e.id){
-                    e.type == 1 ? this.count++ : this.count--
-                }
-        });
-    },
     methods:{
         likeIt(){
             if(User.loggedIn()){

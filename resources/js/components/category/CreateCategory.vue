@@ -59,7 +59,7 @@ export default {
                 this.getCat()
                 this.form.name = null
             })
-            .catch(err => console.log(err.response.data))
+            .catch(err => Exception.handle(err))
         },
         edit(i){
             this.form.name = this.categories[i].name
@@ -82,7 +82,7 @@ export default {
                 this.form.name = null
                 this.editC = false
             })
-            .catch(err => console.log(err.response.data))
+            .catch(err => Exception.handle(err))
         }
     },
     created(){

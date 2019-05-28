@@ -16,7 +16,7 @@
             label="Category"
             >
             </v-autocomplete>
-<markdown-editor v-model="form.body"></markdown-editor>
+            <markdown-editor v-model="form.body"></markdown-editor>
 
             <v-btn color="#3490dc" type="submit" round class="d-block mx-auto" >Create</v-btn>
             </div>
@@ -44,9 +44,14 @@ export default {
     },
     methods:{
         create(){
-            axios.post('/api/question',this.form)
-            .then(res => this.$router.push(res.data.path))
-            .catch(err => Exception.handle(err))
+
+            if(this.form.body !== null){
+                axios.post('/api/question',this.form)
+                .then(res => this.$router.push(res.data.path))
+                .catch(err => Exception.handle(err))
+            }else{
+                alert("Question can't be empty")
+            }
         }
     }
 

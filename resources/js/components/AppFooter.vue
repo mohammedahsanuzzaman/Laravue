@@ -7,9 +7,9 @@
         <i class="fa fa-whatsapp" aria-hidden="true"></i>
       </a>
     </div>
-    <div class="txt">
-      Copyright &copy;{{new Date().getFullYear()}} All rights reserved | This site is made with &nbsp;
-      <i class="fa fa-heart" aria-hidden="true"></i>&nbsp; by &nbsp;<a href="https://ahsan-web.ml" target="_blank" >Ahsan</a>
+    <div class="txt text-xs-center">
+      <p> Copyright &copy;{{new Date().getFullYear()}} All rights reserved <br> This site is made with &nbsp;
+      &#x2764; &nbsp; by &nbsp; <a href="https://ahsan-web.ml" target="_blank" >Ahsan</a></p>
     </div>
   </v-card>
 </template>
@@ -37,10 +37,5 @@ export default {
 }
 .links a{
   padding: 15px 20px
-}
-.txt{
-  display: flex;
-  justify-content: center;
-  align-items: center
 }
 </style>

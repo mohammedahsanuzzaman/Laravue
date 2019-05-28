@@ -21,6 +21,10 @@ export default {
             if(User.loggedIn()){
                 !this.liked ? this.like() : this.dislike()
                 this.liked = !this.liked
+            }else{
+                let x=window.confirm("Login to like?")
+                if (x)
+                    this.$router.push('/login')
             }
         },
         like(){

@@ -7,10 +7,10 @@
           </div>
         </v-card-title>
 
-        <v-card-text v-html="body" class="headline font-weight-bold">
+        <v-card-text  class=" font-weight-bold">
+          <div class="cont" v-html="body"></div>
         </v-card-text>
         <v-card-actions v-if="own">
-          <!-- <router-link :to= "question.path"><v-btn outline color="purple" round>Read</v-btn></router-link> -->
           <v-spacer></v-spacer>
           <v-btn outline round icon class="mr-2" color="#3490dc" @click="edit">
             <v-icon >edit</v-icon>
@@ -49,6 +49,14 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.cont{
+  font-size: 18px !important;
+  overflow: hidden !important;
+}
+.cont p img{
+  width: 100%;
+  
+}
 </style>
+
